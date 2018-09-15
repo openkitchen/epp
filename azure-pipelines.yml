@@ -28,3 +28,15 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: CopyFiles@2
+  displayName: "Copy files to staging directory"
+  inputs:
+    SourceFolder: "$(build.sourcesdirectory)\\**"
+    Contents: "**\\$(BuildConfiguration)\\**"
+    TargetFolder: "$(build.artifactstagingdirectory)"
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(build.artifactstagingdirectory)'
+    artifactName: 'drop' 
