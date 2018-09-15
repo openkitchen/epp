@@ -31,5 +31,5 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(build.sourcesdirectory)\\_bin\\$(BuildPlatform)\\$(BuildConfiguration)'
+    pathtoPublish: '$(build.sourcesdirectory)\\_bin\\Win32\\$(BuildConfiguration)'
     artifactName: 'drop' 
