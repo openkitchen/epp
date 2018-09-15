@@ -33,10 +33,7 @@ steps:
   displayName: "Copy files to staging directory"
   inputs:
     SourceFolder: "$(build.sourcesdirectory)"
-    Contents: |
-      "**\\_bin\\**\\*.exe"
-      "**\\_bin\\**\\*.dll"
-      "**\\_bin\\**\\*.sys"
+    Contents: "**\\_bin\\**\\?(*.exe|*.dll|*.sys)"
     TargetFolder: "$(build.artifactstagingdirectory)"
 
 - task: PublishBuildArtifacts@1
