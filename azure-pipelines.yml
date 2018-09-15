@@ -8,7 +8,7 @@ pool:
 
 variables:
   solution: '**/*.sln'
-  buildPlatform: 'x86'
+  buildPlatform: 'x64'
   buildConfiguration: 'Release'
 
 steps:
@@ -29,7 +29,14 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: CopyFiles@2
+  displayName: "Copy files to staging directory"
+  inputs:
+    SourceFolder: "$(build.sourcesdirectory)"
+    Contents: "**\\bin\\**"
+    TargetFolder: "$(build.artifactstagingdirectory)"
+
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(build.sourcesdirectory)\\_bin\\Win32\\$(BuildConfiguration)'
-    artifactName: 'drop' 
+    pathtoPublish: '$(build.artifactstagingdirectory)'
+    artifactName: 'epp' 
